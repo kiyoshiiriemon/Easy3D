@@ -85,12 +85,16 @@ namespace easy3d {
                     LOG(WARNING) << "model has no valid geometry";
                     return;
                 }
-
-                const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
-                const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
                 float min_value = std::numeric_limits<float>::max();
                 float max_value = -std::numeric_limits<float>::max();
-                details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                if(drawable->clamp_range()){
+                    const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
+                    const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
+                    details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                }else{
+                    min_value=drawable->clamp_lower();
+                    max_value=drawable->clamp_upper();
+                }
 
                 auto points = model->get_vertex_property<vec3>("v:point");
                 std::vector<vec2> d_texcoords;
