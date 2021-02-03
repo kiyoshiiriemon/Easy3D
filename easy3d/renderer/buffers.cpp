@@ -85,12 +85,16 @@ namespace easy3d {
                     LOG(WARNING) << "model has no valid geometry";
                     return;
                 }
-
-                const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
-                const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
                 float min_value = std::numeric_limits<float>::max();
                 float max_value = -std::numeric_limits<float>::max();
-                details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                if(!drawable->fixed_scalar_range()){
+                    const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
+                    const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
+                    details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                }else{
+                    min_value=drawable->scalar_range_min();
+                    max_value=drawable->scalar_range_max();
+                }
 
                 auto points = model->get_vertex_property<vec3>("v:point");
                 std::vector<vec2> d_texcoords;
@@ -116,11 +120,16 @@ namespace easy3d {
                     return;
                 }
 
-                const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
-                const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
                 float min_value = std::numeric_limits<float>::max();
                 float max_value = -std::numeric_limits<float>::max();
-                details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                if(!drawable->fixed_scalar_range()){
+                    const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
+                    const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
+                    details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                }else{
+                    min_value=drawable->scalar_range_min();
+                    max_value=drawable->scalar_range_max();
+                }
 
                 auto points = model->get_vertex_property<vec3>("v:point");
 
@@ -147,11 +156,16 @@ namespace easy3d {
                     return;
                 }
 
-                const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
-                const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
                 float min_value = std::numeric_limits<float>::max();
                 float max_value = -std::numeric_limits<float>::max();
-                details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                if(!drawable->fixed_scalar_range()){
+                    const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
+                    const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
+                    details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                }else{
+                    min_value=drawable->scalar_range_min();
+                    max_value=drawable->scalar_range_max();
+                }
 
                 auto points = model->get_vertex_property<vec3>("v:point");
                 std::vector<vec3> d_points;
@@ -185,11 +199,16 @@ namespace easy3d {
                     return;
                 }
 
-                const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
-                const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
                 float min_value = std::numeric_limits<float>::max();
                 float max_value = -std::numeric_limits<float>::max();
-                details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                if(!drawable->fixed_scalar_range()){
+                    const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
+                    const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
+                    details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                }else{
+                    min_value=drawable->scalar_range_min();
+                    max_value=drawable->scalar_range_max();
+                }
 
                 auto points = model->get_vertex_property<vec3>("v:point");
                 drawable->update_vertex_buffer(points.vector());
@@ -226,11 +245,16 @@ namespace easy3d {
                     return;
                 }
 
-                const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
-                const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
                 float min_value = std::numeric_limits<float>::max();
                 float max_value = -std::numeric_limits<float>::max();
-                details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                if(!drawable->fixed_scalar_range()){
+                    const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
+                    const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
+                    details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                }else{
+                    min_value=drawable->scalar_range_min();
+                    max_value=drawable->scalar_range_max();
+                }
 
                 auto points = model->get_vertex_property<vec3>("v:point");
                 std::vector<vec2> d_texcoords;
@@ -261,11 +285,16 @@ namespace easy3d {
                     model->update_vertex_normals();
                     auto normals = model->get_vertex_property<vec3>("v:normal");
 
-                    const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
-                    const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
                     float min_value = std::numeric_limits<float>::max();
                     float max_value = -std::numeric_limits<float>::max();
-                    details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                    if(!drawable->fixed_scalar_range()){
+                        const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
+                        const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
+                        details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                    }else{
+                        min_value=drawable->scalar_range_min();
+                        max_value=drawable->scalar_range_max();
+                    }
 
                     std::vector<vec3> d_points, d_normals;
                     std::vector<vec2> d_texcoords;
@@ -316,11 +345,16 @@ namespace easy3d {
                     model->update_vertex_normals();
                     auto normals = model->get_vertex_property<vec3>("v:normal");
 
-                    const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
-                    const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
                     float min_value = std::numeric_limits<float>::max();
                     float max_value = -std::numeric_limits<float>::max();
-                    details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                    if(!drawable->fixed_scalar_range()){
+                        const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
+                        const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
+                        details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                    }else{
+                        min_value=drawable->scalar_range_min();
+                        max_value=drawable->scalar_range_max();
+                    }
 
                     for (auto face : model->faces()) {
                         tessellator.begin_polygon(model->compute_face_normal(face));
@@ -388,11 +422,16 @@ namespace easy3d {
                     model->update_vertex_normals();
                     auto normals = model->get_vertex_property<vec3>("v:normal");
 
-                    const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
-                    const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
                     float min_value = std::numeric_limits<float>::max();
                     float max_value = -std::numeric_limits<float>::max();
-                    details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                    if(!drawable->fixed_scalar_range()){
+                        const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
+                        const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
+                        details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                    }else{
+                        min_value=drawable->scalar_range_min();
+                        max_value=drawable->scalar_range_max();
+                    }
 
                     std::vector<vec2> d_texcoords;
                     d_texcoords.reserve(model->n_vertices());
@@ -441,11 +480,16 @@ namespace easy3d {
                     model->update_vertex_normals();
                     auto normals = model->get_vertex_property<vec3>("v:normal");
 
-                    const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
-                    const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
                     float min_value = std::numeric_limits<float>::max();
                     float max_value = -std::numeric_limits<float>::max();
-                    details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                    if(!drawable->fixed_scalar_range()){
+                        const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
+                        const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
+                        details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                    }else{
+                        min_value=drawable->scalar_range_min();
+                        max_value=drawable->scalar_range_max();
+                    }
 
                     for (auto face : model->faces()) {
                         tessellator.begin_polygon(model->compute_face_normal(face));
@@ -507,11 +551,16 @@ namespace easy3d {
                     return;
                 }
 
-                const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
-                const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
                 float min_value = std::numeric_limits<float>::max();
                 float max_value = -std::numeric_limits<float>::max();
-                details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                if(!drawable->fixed_scalar_range()){
+                    const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
+                    const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
+                    details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                }else{
+                    min_value=drawable->scalar_range_min();
+                    max_value=drawable->scalar_range_max();
+                }
 
                 auto points = model->get_vertex_property<vec3>("v:point");
                 std::vector<vec3> d_points;
@@ -546,11 +595,16 @@ namespace easy3d {
                     return;
                 }
 
-                const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
-                const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
                 float min_value = std::numeric_limits<float>::max();
                 float max_value = -std::numeric_limits<float>::max();
-                details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                if(!drawable->fixed_scalar_range()){
+                    const float dummy_lower = (drawable->clamp_range() ? drawable->clamp_lower() : 0.0f);
+                    const float dummy_upper = (drawable->clamp_range() ? drawable->clamp_upper() : 0.0f);
+                    details::clamp_scalar_field(prop.vector(), min_value, max_value, dummy_lower, dummy_upper);
+                }else{
+                    min_value=drawable->scalar_range_min();
+                    max_value=drawable->scalar_range_max();
+                }
 
                 auto points = model->get_vertex_property<vec3>("v:point");
                 drawable->update_vertex_buffer(points.vector());
