@@ -178,6 +178,17 @@ namespace easy3d {
         float texture_fractional_repeat() const { return texture_fractional_repeat_; };
         void set_texture_fractional_repeat(float fr) { texture_fractional_repeat_ = fr; };
 
+        /** fix the value range of a scalar field. */
+        bool fixed_scalar_range() const { return fixed_scalar_range_; }
+        void set_fixed_scalar_range(bool b) { fixed_scalar_range_ = b; }
+
+        /** the lower side of the value range of a scalar field. */
+        float scalar_range_min() const { return scalar_min_; }
+        void set_scalar_range(float low, float high) { scalar_min_ = low; scalar_max_=high; }
+
+        /** Clamp the upper side of the value range of a scalar field. */
+        float scalar_range_max() const { return scalar_max_; }
+
         /** Clamp the value range of a scalar field. */
         bool clamp_range() const { return clamp_range_; }
         void set_clamp_range(bool b) { clamp_range_ = b; }
@@ -233,6 +244,10 @@ namespace easy3d {
         bool clamp_range_;
         float clamp_lower_;
         float clamp_upper_;
+
+        bool fixed_scalar_range_=false;
+        float scalar_min_;
+        float scalar_max_;
 
         Material material_;
 
